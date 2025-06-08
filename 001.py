@@ -65,7 +65,7 @@ with tab2:
             st.success("Perfect sleeping time. Keep it going")
 with tab3:
     st.header("The latest news from VnExpress")
-    feed = feedparser.parse("https://e.vnexpress.net/news/news")
+    feed = feedparser.parse("https://vnexpress.net/rss/tin-moi-nhat.rss")
     for entry in feed.entries[:5]:
         st.subheader(entry.title)
         st.write(entry.published)
