@@ -63,3 +63,10 @@ with tab2:
             st.info("Maybe you are having physical activity hard - Sleep well is necessary to recover your body")
         else:
             st.success("Perfect sleeping time. Keep it going")
+with tab3:
+    st.header("The latest news from VnExpress")
+    feed = feedparser.parse("https://e.vnexpress.net/news/news")
+    for entry in feed.entries[:5]:
+        st.subheader(entry.title)
+        st.write(entry.published)
+        st.write(entry.link)
