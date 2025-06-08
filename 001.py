@@ -53,7 +53,7 @@ with tab2:
     age = st.number_input("Your age:", min_value=5, max_value=100, value= 25)
     activity = st.slider("Physical activity level (1 = few, 10 = energetic)", 1, 10, 5)
     screen_time = st.number_input("Screen usage per day (hour)", min_value=0, max_value=24, value=6)
-    if st.button("🥱 Dự đoán giờ đi ngủ "):
+    if st.button("🥱 Guess the sleeping time"):
         input_data = [[age, activity, screen_time]]
         result = model.predict(input_data)[0]
         st.success(f"You should sleep {result:.1f} hour per night")
