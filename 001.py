@@ -66,7 +66,7 @@ with tab2:
 with tab3:
     st.header("The latest news from VnExpress")
     feed = feedparser.parse("https://vnexpress.net/rss/tin-moi-nhat.rss")
-    for entry in feed.entries[:5]:
+    for entry in feed.entries[:10]:
         st.subheader(entry.title)
         st.write(entry.published)
         st.write(entry.link)
