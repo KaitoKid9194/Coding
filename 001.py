@@ -35,3 +35,31 @@ with tab1:
     for title, url in videos[selected_artist]:
         st.subheader(title)
         st.video(url)
+with tab2:
+    st.title("🕘 Guessing the sleeping hours")
+    x = [
+        [10, 8, 1],
+        [20, 6, 5],
+        [25, 3, 8],
+        [30, 2, 6],
+        [50, 2, 2],
+        [15, 9, 2],
+        [40, 4, 3]
+    ]
+    y = [10, 8, 6, 6, 5, 7, 9.5]
+    model = LinearRegression()
+    model.fit(x, y)
+    st.write("Please enter your info:")
+    age = st.number_input("Your age:", min_value=5, max_value=100, value= 25)
+    activity = st.slider("Physical activity level (1 = few, 10 = energetic)", 1, 10, 5)
+    screen_time = st.number_input("Screen usage per day (hour)", min_value=0, max_value=24, value=6)
+    if st.button("🥱 Dự đoán giờ đi ngủ "):
+        input_data = [[age, activity, screen_time]]
+        result = model.predict(input_data)[0]
+        st.success(f"You should sleep {result:.1f} hour per night")
+        if result < 6.5:
+            st.warning("Maybe you need to sleep much to recover your health")
+        elif result > 9:
+            st.info("Maybe you are having physical activity hard - Sleep well is necessary to recover your body")
+        else:
+            st.success("Perfect sleeping time. Keep it going")
