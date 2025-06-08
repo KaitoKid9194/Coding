@@ -2,8 +2,8 @@ import streamlit as st
 from sklearn.linear_model import LinearRegression
 import feedparser
 
-st.sidebar.title("🎶 Danh sách nghệ sĩ")
-selected_artist = st.sidebar.radio("Chọn nghệ sĩ:", ["Đen Vâu", "Hà Anh Tuấn", "Sơn Tùng M-TP"])
+st.sidebar.title("🎶 Music artist list")
+selected_artist = st.sidebar.radio("Choose a music artist:", ["Đen Vâu", "Hà Anh Tuấn", "Sơn Tùng M-TP"])
 
 videos = {
     "Đen Vâu": [
@@ -26,12 +26,12 @@ videos = {
     ]
 }
 
-st.title("🎧 Ứng dụng giải trí và sức khỏe")
+st.title("🎧 Entertainment and health app")
 
-tab1, tab2, tab3 = st.tabs(["🎤 MV yêu thích", "💤 Dự đoán giờ ngủ", "📰 Đọc báo" ])
+tab1, tab2, tab3 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News" ])
 
 with tab1:
-    st.header(f"Các bài hát của {selected_artist} 🎵")
+    st.header(f"{selected_artist}'s music 🎵")
     for title, url in videos[selected_artist]:
         st.subheader(title)
         st.video(url)
