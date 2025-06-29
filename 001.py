@@ -84,8 +84,8 @@ with tab4:
         st.warning("Không tìm thấy bản tin giá vàng gần đây.")
 with tab5:
     st.header("Check your BMI number")
-    weight = st.number_input("Enter your weight (kg)" min_value = 10.0, max_value = 200.0, value = 60.0, step = 0.1)
-    height = st.number_input("Enter your height (m)" min_value = 1.0, max_value = 2.5, value = 1.7, step = 0.01)
+    weight = st.number_input("Enter your weight (kg)", min_value = 10.0, max_value = 200.0, value = 60.0, step = 0.1)
+    height = st.number_input("Enter your height (m)", min_value = 1.0, max_value = 2.5, value = 1.7, step = 0.01)
     if st.button("Calculate BMI"):
         bmi = weight/(height ** 2)
         st.success(f"Your BMI number is {bmi : .2f}")
