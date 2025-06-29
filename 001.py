@@ -72,7 +72,7 @@ with tab3:
         st.write(entry.link)
 with tab4:
     st.header("Updating gold price from Vietnamnet")
-    feet = feedparser.parse("https://vietnamnet.vn/rss/kinh-doanh.rss")
+    feed = feedparser.parse("https://vietnamnet.vn/rss/kinh-doanh.rss")
     gold_news = [entry for entry in feed.entries if "gold" in entry.title.lower() or "gold price" in entry.summary.lower()]
     if gold_news:
         for entry in gold_news[:5]:
