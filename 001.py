@@ -28,7 +28,7 @@ videos = {
 
 st.title("🎧 Entertainment and health app")
 
-tab1, tab2, tab3 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News" ])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News", "Gold price 💰", "Health check ❤️"])
 
 with tab1:
     st.header(f"{selected_artist}'s music 🎵")
@@ -70,3 +70,12 @@ with tab3:
         st.subheader(entry.title)
         st.write(entry.published)
         st.write(entry.link)
+with tab4:
+    st.header("Updating gold price from Vietnamnet")
+    feet = feedparser.parse("https://vietnamnet.vn/rss/kinh-doanh.rss")
+    gold_news = [entry for entry in feed.entries if "gold" in entry.title.lower() or "gold price" in entry.summary.lower()]
+    if gold_news:
+        for entry in gold_news[:5]:
+            st.subheader(entry.title)
+            st.write(entry.published)
+            st.write(entry.link)
