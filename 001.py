@@ -79,3 +79,5 @@ with tab4:
             st.subheader(entry.title)
             st.write(entry.published)
             st.write(entry.link)
+    else:
+        st.warning("No gold price news found")
