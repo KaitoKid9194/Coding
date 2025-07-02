@@ -71,7 +71,7 @@ with tab3:
         st.write(entry.published)
         st.write(entry.link)
 with tab4:
-    st.header("💰 Cập nhật giá vàng từ Vietnamnet")
+    st.header("💰 Updating gold price news from Vietnamnet")
     feed = feedparser.parse("https://vietnamnet.vn/rss/kinh-doanh.rss")
     gold_news = [entry for entry in feed.entries if "vàng" in entry.title.lower() or "giá vàng" in entry.summary.lower()]
 
@@ -81,7 +81,7 @@ with tab4:
             st.write(entry.published)
             st.write(entry.link)
     else:
-        st.warning("Không tìm thấy bản tin giá vàng gần đây.")
+        st.warning("No gold price news found.")
 with tab5:
     st.header("Check your BMI number")
     weight = st.number_input("Enter your weight (kg)", min_value = 10.0, max_value = 200.0, value = 60.0, step = 0.1)
@@ -90,10 +90,10 @@ with tab5:
         bmi = weight/(height ** 2)
         st.success(f"Your BMI number is {bmi : .2f}")
         if bmi < 18.5:
-            st.warning("Bạn đang thiếu cân, nên ăn uống đầy đủ và dinh dưỡng hơn.")
+            st.warning("You are underweight, so you should eat more nutritious food.")
         elif 18.5 <= bmi < 25:
-            st.info("Bạn có cân nặng bình thường. Hãy tiếp tục duy trì lối sống lành mạnh.")
+            st.info("You are at a normal weight. Continue to maintain a healthy lifestyle.")
         elif 25 <= bmi < 30:
-            st.warning("Bạn đang thừa cân. Nên cân đối chế độ ăn và tập thể dục.")
+            st.warning("You're overweight. You need to balance diet and exercise.")
         else:
-            st.error("Bạn đang béo phì. Nên gặp chuyên gia dinh dưỡng hoặc bác sĩ để được tư vấn.")
+            st.error("You are overweight. See a nutritionist or doctor for advice.")
