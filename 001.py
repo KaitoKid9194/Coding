@@ -125,12 +125,12 @@ with tab6:
     model = LinearRegression()
     model.fit(x, y)
     st.subheader("Enter health information")
-    hr = st.number_input("Heartbeat (bpm)", min_value = 40, max_value = 200, value = 15)
+    hr = st.number_input("Heartbeat (bpm)", min_value = 40, max_value = 200, value = 75)
     age = st.number_input("Age", min_value = 1, max_value = 120, value = 30)
-    weight = st.number_input("Weight (kg)", min_value = 10, max_value = 200, value = 60.0)
+    weight = st.number_input("Weight (kg)", min_value = 10.0, max_value = 200.0, value = 60.0)
     if st.button("Check"):
         score = model.predict([[hr, age, weight]])[0]
-        st.success(f"Risk index: **{score: 2.f}**")
+        st.success(f"chỉ số rủi ro: **{score: .2f}**")
         if score < 1.5:
             st.info("You're good. No need to meet a doctor.")
         elif score < 2.5:
