@@ -28,7 +28,7 @@ videos = {
 
 st.title("🎧 Entertainment and health app")
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺"])
 
 with tab1:
     st.header(f"{selected_artist}'s music 🎵")
