@@ -130,7 +130,7 @@ with tab6:
     weight = st.number_input("Weight (kg)", min_value = 10, max_value = 200, value = 60.0)
     if st.button("Check"):
         score = model.predict([[hr, age, weight]])[0]
-        st.success("Risk index: {score: 2.f}")
+        st.success(f"Risk index: **{score: 2.f}**")
         if score < 1.5:
             st.info("You're good. No need to meet a doctor.")
         elif score < 2.5:
