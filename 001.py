@@ -28,7 +28,7 @@ videos = {
 
 st.title("🎧 Entertainment and health app")
 
-tab1, tab2, tab3, tab4, tab5 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News", "Gold price 💰", "Health check ❤️"])
+tab1, tab2, tab3, tab4, tab5 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺"])
 
 with tab1:
     st.header(f"{selected_artist}'s music 🎵")
@@ -97,3 +97,44 @@ with tab5:
             st.warning("You're overweight. You need to balance diet and exercise.")
         else:
             st.error("You are overweight. See a nutritionist or doctor for advice.")
+with tab6:
+    st.header("Heartbeat check, are you need to meet a doctor?")
+    x = np.array([
+        [100, 2, 12],
+        [95, 4, 15],
+        [90, 6, 18],
+        [85, 9, 20],
+        [80, 12, 25],
+        [75, 20, 50],
+        [72, 30, 65],
+        [70, 40, 70],
+        [68, 50, 75],
+        [66, 58, 78],
+        [70, 65, 70],
+        [75, 70, 68],
+        [80, 75, 65],
+        [85, 80, 60],
+        [90, 85, 58],
+    ])
+    y = np.array([
+        1.2, 1.3, 1.5, 1.6, 1.7,
+        2.0, 2.3, 2.7, 3.0, 3.2,
+        3.5, 3.8, 4.0, 4.3, 4.6
+    ])
+    model = LinearRegression()
+    model.fit(x, y)
+    st.subheader("Enter health information")
+    hr = st.number_input("Heartbeat (bpm)", min_value = 40, max_value = 200, value = 15)
+    age = st.number_input("Age", min_value = 1, max_value = 120, value = 30)
+    weight = st.number_input("Weight (kg)", min_value = 10, max_value = 200, value = 60.0)
+    if st.button("Check"):
+        score = model.predict([[hr, age, weight]])[0]
+        st.success("Risk index: {score: 2.f}")
+        if score < 1.5:
+            st.info("You're good. No need to meet a doctor.")
+        elif score < 2.5:
+            st.warning("Need to wait for a bit more time, rest and check again later.")
+        elif score < 3.5:
+            st.warning("You have some unusual points. Need some advice from the doctor.")
+        else:
+            st.error("High risk! Meet a doctor as soon as possible!")
