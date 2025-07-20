@@ -141,7 +141,7 @@ with tab6:
             st.error("High risk! Meet a doctor as soon as possible!")
 with tab7:
     age = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
-    if st.button("Check")
+    if st.button("Check"):
         if age < 18:
             st.info("You should walk 12000 - 15000 steps per day.")
         elif age < 39:
