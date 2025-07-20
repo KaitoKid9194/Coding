@@ -141,11 +141,12 @@ with tab6:
             st.error("High risk! Meet a doctor as soon as possible!")
 with tab7:
     age = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
-    if age < 18:
-        st.info("You should walk 12000 - 15000 steps per day.")
-    elif age < 39:
-        st.info("You should walk 8000 - 10000 steps per day.")
-    elif age < 64:
-        st.info("You should walk 7000 - 9000 steps per day.")
-    else:
-        st.info("You should walk 6000 - 8000 steps per day.")
+    if st.button("Check")
+        if age < 18:
+            st.info("You should walk 12000 - 15000 steps per day.")
+        elif age < 39:
+            st.info("You should walk 8000 - 10000 steps per day.")
+        elif age < 64:
+            st.info("You should walk 7000 - 9000 steps per day.")
+        else:
+            st.info("You should walk 6000 - 8000 steps per day.")
