@@ -3,35 +3,34 @@ from sklearn.linear_model import LinearRegression
 import feedparser
 import numpy as np
 
-st.sidebar.title("🎶 Music artist list")
-selected_artist = st.sidebar.radio("Choose a music artist:", ["Đen Vâu", "Hà Anh Tuấn", "Sơn Tùng M-TP"])
-
-videos = {
-    "Đen Vâu": [
-        ("Bữa ăn cho em", "https://www.youtube.com/watch?v=ukHK1GVyr0I"),
-        ("Mang tiền về cho mẹ", "https://www.youtube.com/watch?v=UVbv-PJXm14"),
-        ("Trời hôm nay nhiều mây cực!", "https://www.youtube.com/watch?v=MBaF0l-PcRY"),
-        ("Hai triệu năm", "https://www.youtube.com/watch?v=LSMDNL4n0kM")
-    ],
-    "Hà Anh Tuấn": [
-        ("Tuyết rơi mùa hè", "https://www.youtube.com/watch?v=pTh3KCD7Euc"),
-        ("Nước ngoài", "https://www.youtube.com/watch?v=pU3O9Lnp-Z0"),
-        ("Tháng tư là lời nói dối của em", "https://www.youtube.com/watch?v=UCXao7aTDQM"),
-        ("Xuân thì", "https://www.youtube.com/watch?v=3s1r_g_jXNs")
-    ],
-    "Sơn Tùng M-TP": [
-        ("Lạc trôi", "https://www.youtube.com/watch?v=Llw9Q6akRo4"),
-        ("Chúng ta không thuộc về nhau", "https://www.youtube.com/watch?v=qGRU3sRbaYw"),
-        ("Muộn rồi mà sao còn", "https://www.youtube.com/watch?v=xypzmu5mMPY"),
-        ("Hãy trao cho anh", "https://www.youtube.com/watch?v=knW7-x7Y7RE")
-    ]
-}
-
 st.title("🎧 Entertainment and health app")
 
 tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺", "Recommended steps a day 👣"])
 
 with tab1:
+    st.sidebar.title("🎶 Music artist list")
+    selected_artist = st.sidebar.radio("Choose a music artist:", ["Đen Vâu", "Hà Anh Tuấn", "Sơn Tùng M-TP"])
+
+    videos = {
+        "Đen Vâu": [
+            ("Bữa ăn cho em", "https://www.youtube.com/watch?v=ukHK1GVyr0I"),
+            ("Mang tiền về cho mẹ", "https://www.youtube.com/watch?v=UVbv-PJXm14"),
+            ("Trời hôm nay nhiều mây cực!", "https://www.youtube.com/watch?v=MBaF0l-PcRY"),
+            ("Hai triệu năm", "https://www.youtube.com/watch?v=LSMDNL4n0kM")
+        ],
+        "Hà Anh Tuấn": [
+            ("Tuyết rơi mùa hè", "https://www.youtube.com/watch?v=pTh3KCD7Euc"),
+            ("Nước ngoài", "https://www.youtube.com/watch?v=pU3O9Lnp-Z0"),
+            ("Tháng tư là lời nói dối của em", "https://www.youtube.com/watch?v=UCXao7aTDQM"),
+            ("Xuân thì", "https://www.youtube.com/watch?v=3s1r_g_jXNs")
+        ],
+        "Sơn Tùng M-TP": [
+            ("Lạc trôi", "https://www.youtube.com/watch?v=Llw9Q6akRo4"),
+            ("Chúng ta không thuộc về nhau", "https://www.youtube.com/watch?v=qGRU3sRbaYw"),
+            ("Muộn rồi mà sao còn", "https://www.youtube.com/watch?v=xypzmu5mMPY"),
+            ("Hãy trao cho anh", "https://www.youtube.com/watch?v=knW7-x7Y7RE")
+        ]
+    }
     st.header(f"{selected_artist}'s music 🎵")
     for title, url in videos[selected_artist]:
         st.subheader(title)
@@ -141,7 +140,7 @@ with tab6:
             st.error("High risk! Meet a doctor as soon as possible!")
 with tab7:
     age = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
-    if st.button("Check"):
+    if st.button("Info"):
         if age < 18:
             st.info("You should walk 12000 - 15000 steps per day.")
         elif age < 39:
