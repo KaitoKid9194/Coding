@@ -29,7 +29,7 @@ videos = {
 
 st.title("🎧 Entertainment and health app")
 
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺"])
+tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺", "Recommended steps a day"])
 
 with tab1:
     st.header(f"{selected_artist}'s music 🎵")
@@ -139,3 +139,13 @@ with tab6:
             st.warning("You have some unusual points. Need some advice from the doctor.")
         else:
             st.error("High risk! Meet a doctor as soon as possible!")
+with tab7:
+    age = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
+    if age < 18:
+        st.info("You should walk 12000 - 15000 steps per day.")
+    elif age < 39:
+        st.info("You should walk 8000 - 10000 steps per day.")
+    elif age < 64:
+        st.info("You should walk 7000 - 9000 steps per day.")
+    else:
+        st.info("You should walk 6000 - 8000 steps per day.")
