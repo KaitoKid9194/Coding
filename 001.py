@@ -125,10 +125,10 @@ with tab6:
     model.fit(x, y)
     st.subheader("Enter health information")
     hr = st.number_input("Heartbeat (bpm)", min_value = 40, max_value = 200, value = 75)
-    age = st.number_input("Age", min_value = 1, max_value = 120, value = 30)
+    age1 = st.number_input("Age", min_value = 1, max_value = 120, value = 30)
     weight = st.number_input("Weight (kg)", min_value = 10.0, max_value = 200.0, value = 60.0)
     if st.button("Check"):
-        score = model.predict([[hr, age, weight]])[0]
+        score = model.predict([[hr, age1, weight]])[0]
         st.success(f"chỉ số rủi ro: **{score: .2f}**")
         if score < 1.5:
             st.info("You're good. No need to meet a doctor.")
@@ -139,29 +139,29 @@ with tab6:
         else:
             st.error("High risk! Meet a doctor as soon as possible!")
 with tab7:
-    age = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
+    age2 = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
     if st.button("Info"):
-        if age < 18:
+        if age2 < 18:
             st.info("You should walk 12000 - 15000 steps per day.")
-        elif age < 40:
+        elif age2 < 40:
             st.info("You should walk 8000 - 10000 steps per day.")
-        elif age < 65:
+        elif age2 < 65:
             st.info("You should walk 7000 - 9000 steps per day.")
         else:
             st.info("You should walk 6000 - 8000 steps per day.")
 with tab8:
-    age = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
+    age3 = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
     gender = st.multiselect("What's your gender?")
     if st.button("Recommend"):
-        if age < 4:
+        if age3 < 4:
             st.info("You should drink 1.3 liter of water a day.")
-        elif age < 9:
+        elif age3 < 9:
             st.info("You should drink 1.7 liter of water a day.")
-        elif age < 14:
+        elif age3 < 14:
             st.info("You should drink 2.1 - 1.4 liter of water a day.")
-        elif age < 19:
+        elif age3 < 19:
             st.info("You should drink 2.3 - 3.3 liter of water a day.")
-        elif age < 51:
+        elif age3 < 51:
             st.info("You should drink 1.3 liter of water a day.")
         else:
             st.info("You should drink 1.3 liter of water a day.")
