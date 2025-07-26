@@ -5,7 +5,7 @@ import numpy as np
 
 st.title("🎧 Entertainment and health app")
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["🎤 Favorite music artist", "💤 Nap amount recommendation", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺", "Step recommendations 👣", "Daily water recommended 💧"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["🎤 Favorite music artist", "💤 Nap amount recommendation", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺", "Step recommendations 👣", "Daily water recommended 💧"])
 
 with tab1:
     st.sidebar.title("🎶 Music artist list")
