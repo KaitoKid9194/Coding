@@ -5,7 +5,7 @@ import numpy as np
 
 st.title("🎧 Entertainment and health app")
 
-tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["🎤 Favorite music artist", "💤 Guessing sleeping hours", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺", "Recommended steps a day 👣"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8, tab9 = st.tabs(["🎤 Favorite music artist", "💤 Nap amount recommendation", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺", "Step recommendations 👣", "Daily water recommended 💧"])
 
 with tab1:
     st.sidebar.title("🎶 Music artist list")
@@ -143,9 +143,25 @@ with tab7:
     if st.button("Info"):
         if age < 18:
             st.info("You should walk 12000 - 15000 steps per day.")
-        elif age < 39:
+        elif age < 40:
             st.info("You should walk 8000 - 10000 steps per day.")
-        elif age < 64:
+        elif age < 65:
             st.info("You should walk 7000 - 9000 steps per day.")
         else:
             st.info("You should walk 6000 - 8000 steps per day.")
+with tab8:
+    age = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
+    gender = st.multiselect("What's your gender?")
+    if st.button("Recommend"):
+        if age < 4:
+            st.info("You should drink 1.3 liter of water a day.")
+        elif age < 9:
+            st.info("You should drink 1.7 liter of water a day.")
+        elif age < 14:
+            st.info("You should drink 2.1 - 1.4 liter of water a day.")
+        elif age < 19:
+            st.info("You should drink 2.3 - 3.3 liter of water a day.")
+        elif age < 51:
+            st.info("You should drink 1.3 liter of water a day.")
+        else:
+            st.info("You should drink 1.3 liter of water a day.")
