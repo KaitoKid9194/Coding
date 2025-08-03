@@ -128,7 +128,7 @@ with tab6:
     age1 = st.number_input("Age", min_value = 1, max_value = 120, value = 30)
     weight = st.number_input("Weight (kg)", min_value = 10.0, max_value = 200.0, value = 60.0)
     if st.button("Check"):
-        score = model.predict([[hr, age1, weight]])[0]
+        score = model.predict([[hr, age1, weight]][0])
         st.success(f"chỉ số rủi ro: **{score: .2f}**")
         if score < 1.5:
             st.info("You're good. No need to meet a doctor.")
@@ -165,3 +165,4 @@ with tab8:
             st.info("You should drink 1.3 liter of water a day.")
         else:
             st.info("You should drink 1.3 liter of water a day.")
+
