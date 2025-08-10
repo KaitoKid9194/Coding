@@ -2,12 +2,19 @@ import streamlit as st
 from sklearn.linear_model import LinearRegression
 import feedparser
 import numpy as np
-
 st.title("🎧 Entertainment and health app")
-
-tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(["🎤 Favorite music artist", "💤 Nap amount recommendation", "📰 News", "Gold price 💰", "Health check ❤️", "Heartbeat check 🩺", "Step recommendations 👣", "Daily water recommended 💧"])
-
-with tab1:
+menu = st.selectbox("Choose the application you want to use: ", [
+    "🎤 Favorite music artist", 
+    "💤 Nap amount recommendation", 
+    "📰 News",
+    "Gold price 💰", 
+    "Health check ❤️", 
+    "Heartbeat check 🩺", 
+    "Step recommendations 👣", 
+    "Daily water recommended 💧", 
+    "DISC test 🧠"
+])
+if menu == "🎤 Favorite music artist":
     st.sidebar.title("🎶 Music artist list")
     selected_artist = st.sidebar.radio("Choose a music artist:", ["Đen Vâu", "Hà Anh Tuấn", "Sơn Tùng M-TP"])
 
@@ -35,7 +42,7 @@ with tab1:
     for title, url in videos[selected_artist]:
         st.subheader(title)
         st.video(url)
-with tab2:
+elif menu == "💤 Nap amount recommendation":
     st.title("🕘 Guessing the sleeping hours")
     x = [
         [10, 8, 1],
@@ -63,26 +70,25 @@ with tab2:
             st.info("Maybe you are having physical activity hard - Sleep well is necessary to recover your body")
         else:
             st.success("Perfect sleeping time. Keep it going")
-with tab3:
+elif menu == "📰 News":
     st.header("The latest news from VnExpress")
     feed = feedparser.parse("https://vnexpress.net/rss/tin-moi-nhat.rss")
     for entry in feed.entries[:10]:
-        st.subheader(entry.title)
-        st.write(entry.published)
-        st.write(entry.link)
-with tab4:
+            st.subheader(entry.title)
+            st.write(entry.published)
+            st.write(entry.link)
+elif menu == "Gold price 💰":
     st.header("💰 Updating gold price news from Vietnamnet")
     feed = feedparser.parse("https://vietnamnet.vn/rss/kinh-doanh.rss")
     gold_news = [entry for entry in feed.entries if "vàng" in entry.title.lower() or "giá vàng" in entry.summary.lower()]
-
     if gold_news:
-        for entry in gold_news[:5]:  # Hiện 5 bài gần nhất
+        for entry in gold_news[:5]:
             st.subheader(entry.title)
             st.write(entry.published)
             st.write(entry.link)
     else:
         st.warning("No gold price news found.")
-with tab5:
+elif menu == "Health check ❤️":
     st.header("Check your BMI number")
     weight = st.number_input("Enter your weight (kg)", min_value = 10.0, max_value = 200.0, value = 60.0, step = 0.1)
     height = st.number_input("Enter your height (m)", min_value = 1.0, max_value = 2.5, value = 1.7, step = 0.01)
@@ -97,7 +103,7 @@ with tab5:
             st.warning("You're overweight. You need to balance diet and exercise.")
         else:
             st.error("You are overweight. See a nutritionist or doctor for advice.")
-with tab6:
+elif menu == "Heartbeat check 🩺":
     st.header("Heartbeat check, are you need to meet a doctor?")
     x = np.array([
         [100, 2, 12],
@@ -125,10 +131,10 @@ with tab6:
     model.fit(x, y)
     st.subheader("Enter health information")
     hr = st.number_input("Heartbeat (bpm)", min_value = 40, max_value = 200, value = 75)
-    age1 = st.number_input("Age", min_value = 1, max_value = 120, value = 30)
+    age = st.number_input("Age", min_value = 1, max_value = 120, value = 30)
     weight = st.number_input("Weight (kg)", min_value = 10.0, max_value = 200.0, value = 60.0)
     if st.button("Check"):
-        score = model.predict([[hr, age1, weight]][0])
+        score = model.predict([[hr, age, weight]])[0]
         st.success(f"chỉ số rủi ro: **{score: .2f}**")
         if score < 1.5:
             st.info("You're good. No need to meet a doctor.")
@@ -138,31 +144,86 @@ with tab6:
             st.warning("You have some unusual points. Need some advice from the doctor.")
         else:
             st.error("High risk! Meet a doctor as soon as possible!")
-with tab7:
-    age2 = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
+elif menu == "Step recommendations 👣":
+    age = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
     if st.button("Info"):
-        if age2 < 18:
+        if age < 18:
             st.info("You should walk 12000 - 15000 steps per day.")
-        elif age2 < 40:
+        elif age < 40:
             st.info("You should walk 8000 - 10000 steps per day.")
-        elif age2 < 65:
+        elif age < 65:
             st.info("You should walk 7000 - 9000 steps per day.")
         else:
             st.info("You should walk 6000 - 8000 steps per day.")
-with tab8:
-    age3 = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25)
-    gender = st.multiselect("What's your gender?")
+elif menu == "Daily water recommended 💧":
+    age1 = st.number_input("How old are you?", min_value= 1, max_value= 100, value= 25, key="abc")
     if st.button("Recommend"):
-        if age3 < 4:
+        if age1 < 4:
             st.info("You should drink 1.3 liter of water a day.")
-        elif age3 < 9:
+        elif age1 < 9:
             st.info("You should drink 1.7 liter of water a day.")
-        elif age3 < 14:
+        elif age1 < 14:
             st.info("You should drink 2.1 - 1.4 liter of water a day.")
-        elif age3 < 19:
+        elif age1 < 19:
             st.info("You should drink 2.3 - 3.3 liter of water a day.")
-        elif age3 < 51:
+        elif age1 < 51:
             st.info("You should drink 1.3 liter of water a day.")
         else:
             st.info("You should drink 1.3 liter of water a day.")
-
+elif menu == "DISC test 🧠":
+    st.header("Personality check based on DISC")
+    st.markdown("Choose a most likely discription and a least likely description.")
+    group = [
+        {
+            "D": "I'm assertive and like to control.",
+            "I": "I like friendly and easy to talk to.",
+            "S": "I am patient and trustworthy.",
+            "C": "I am precise and systematic."
+        },
+        {
+            "D": "I like challenges and fast action.",
+            "I": "I'm energetic and optimistic.",
+            "S": "I'm stable and supportive to others.",
+            "C": "I work according to clear rules."
+        },
+        {
+            "D": "I like to control the result.",
+            "I": "I like to be recognized.",
+            "S": "I aprecciate harmony.",
+            "C": "I pay attention to detail and analysis."
+        }
+    ]
+    score = {"D": 0, "I": 0, "S": 0, "C": 0}
+    for idx, group in enumerate(group):
+        st.markdown(f"### group {idx + 1}")
+        options = list(group.values())
+        key = list(group.keys())
+        most = st.radio("Your best fitting desciprtion", options, key = f"most_{idx}")
+        least = st.radio("Your least fitting desciprtion", options, key = f"least_{idx}")
+        for key, val in group.items():
+            if val == most:
+                score[key] += 1
+            if val == least:
+                score[key] -= 1
+    if st.button("Check the DISC result"):
+        st.header("Your result:")
+        max_type = max(score, key = score.get)
+        for style, score in score.items():
+            st.write(f"{style}: {score} scores")
+        st.markdown(f"Your most outstanding feature is:  {max_type}**")
+        descriptions = {
+            "D": "Quyết đoán, định hướng kết quả và thích kiểm soát",
+            "I": "Giao tiếp tốt, tràn đầy năng lượng và truyền cảm hứng",
+            "S": "Kiên nhẫn, đáng tin cậy và hỗ trợ người khác",
+            "C": "Chính xác, tuân thủ quy trình và thích phân tích logic"            
+        }
+        st.info(descriptions[max_type])
+        st.markdown("-----")
+        st.markdown("Mô tả chi tiết các nhóm DISC")
+        st.markdown("""
+            - **D (Dominance)**: Người lãnh đạo, chủ động, thích cạnh tranh. Ví dụ: CEO, nhà sáng lập.  
+            - **I (Influence)**: Người truyền cảm hứng, thích giao tiếp, có sức hút. Ví dụ: người làm marketing, diễn giả.  
+            - **S (Steadiness)**: Người hỗ trợ, trung thành, kiên nhẫn. Ví dụ: giáo viên, điều dưỡng.  
+            - **C (Conscientiousness)**: Người phân tích, tỉ mỉ, theo quy trình. Ví dụ: kế toán, kỹ sư.
+        """)
+        st.caption("Đây chỉ là bài tham khảo về chỉ số DISC")
